@@ -1,0 +1,20 @@
+type Stats @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  hp: Int
+  mana: Int
+  attack: Int
+  defense: Int
+}
+
+type Pokemon @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  position: Int
+  name: String
+  types: [String]
+  image: String
+  weight: Int
+  height: Int
+  status_id: ID
+  generation: Int
+}
+ 
