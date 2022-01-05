@@ -50,7 +50,7 @@ class InfoPokemonController extends GetxController {
 
     final List<Pokemon> pokemonExists =
         await PokemonAmplify.selectPokemonPosition(p);
-    if (pokemonExists.isEmpty || pokemonExists.isNull) {
+    if (pokemonExists.isEmpty || pokemonExists==[]) {
       PokemonAmplify.savePokemon(p);
       CustomSnackBar.getSnackBar("POKEMÓN SALVO!",
           "Pokemón da API salvo na AWS.", Icons.done, Colors.blueAccent);

@@ -6,6 +6,7 @@ import 'package:pokedex_app/app/constants/type_pokemons.dart';
 import 'package:pokedex_app/app/widgets/custom_drawer.dart';
 import 'package:pokedex_app/app/widgets/custom_text_form_field.dart';
 import 'package:pokedex_app/models/Pokemon.dart';
+
 import 'info_pokemon_controller.dart';
 
 class InfoPokemonPage extends GetView<InfoPokemonController> {
@@ -24,7 +25,9 @@ class InfoPokemonPage extends GetView<InfoPokemonController> {
         backgroundColor: Colors.blue,
         actions: [
           GestureDetector(
-              onTap: () {},
+              onTap: () {
+                controller.savePokemonApiToAmplify(_pokemon);
+              },
               child: Container(
                 padding: const EdgeInsets.all(10.0),
                 child: const Icon(

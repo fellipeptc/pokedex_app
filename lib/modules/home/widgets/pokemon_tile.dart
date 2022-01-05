@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pokedex_app/app/constants/type_pokemons.dart';
+import 'package:pokedex_app/models/Pokemon.dart';
 import 'package:pokedex_app/modules/home/home_controller.dart';
 
 @immutable
 class PokemonTile extends GetView<HomeController> {
-  final _pokemon;
-  const PokemonTile(this._pokemon);
+  final Pokemon _pokemon;
+  const PokemonTile(this._pokemon, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String _primaryType = _pokemon.types[0];
-    var _secundaryType;
-    if (_pokemon.types.length > 1) _secundaryType = _pokemon.types[1];
+    String _primaryType = _pokemon.types![0];
+    String? _secundaryType;
+    if (_pokemon.types!.length > 1) _secundaryType = _pokemon.types![1];
     return InkWell(
       onTap: () {
         controller.goToInfoPokemonPage(_pokemon);
@@ -67,7 +68,7 @@ class PokemonTile extends GetView<HomeController> {
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                "${_pokemon.name.toUpperCase()}",
+                                _pokemon.name!.toUpperCase(),
                                 style: TextStyle(
                                     color: TypesPokemon.colorText(_primaryType),
                                     fontSize: 20.0,

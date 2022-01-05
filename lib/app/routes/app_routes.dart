@@ -1,4 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:pokedex_app/modules/create_pokemon/create_pokemon_binding.dart';
 import 'package:pokedex_app/modules/create_pokemon/create_pokemon_page.dart';
 import 'package:pokedex_app/modules/home/home_binding.dart';
@@ -17,6 +18,8 @@ class AppRoutes {
       name: '/home',
       page: () => HomePage(),
       binding: HomeBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(seconds: 2)
     ),
     GetPage(
       name: '/infoPokemon',

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokedex_app/app/constants/app_constants.dart';
 import 'package:pokedex_app/app/widgets/custom_drawer.dart';
-import 'package:pokedex_app/app/widgets/pokemon_tile.dart';
 import 'package:pokedex_app/models/Pokemon.dart';
+import 'package:pokedex_app/modules/home/widgets/pokemon_grid.dart';
+import 'package:pokedex_app/modules/home/widgets/pokemon_tile.dart';
 
 import 'home_controller.dart';
 
@@ -104,54 +105,18 @@ class HomePage extends GetView<HomeController> {
         20.seconds;
         return controller.getPokemonListAmplify();
       },
-      child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-        controller: controller.scrollController2,
-        itemCount: controller.pokemonsAmplify.length,
-        separatorBuilder: (BuildContext context, int index) => const SizedBox(
-          height: 10.0,
+
+        child: GridView.count(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+          controller: controller.scrollController2,
+          crossAxisCount: 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          children: controller.pokemonsAmplify
+              .map((pokemon) => PokemonGrid(pokemon))
+              .toList(),
         ),
-        itemBuilder: (context, index) {
-          return _buildRowItem(context, index);
-        },
-      ),
-    );
-  }
-
-  _buildRowItem(context, index) {
-    return Dismissible(
-      direction: DismissDirection.endToStart,
-      key: Key(controller.pokemonsAmplify[index].id),
-      background: _buildBgDeleteItem(),
-      onDismissed: (direction) async {
-        await controller
-            .removePokemonAmplify(controller.pokemonsAmplify.elementAt(index));
-      },
-      child: PokemonTile(controller.pokemonsAmplify.elementAt(index)),
-    );
-  }
-
-  _buildBgDeleteItem() {
-    return Container(
-      alignment: Alignment.centerRight,
-      margin: const EdgeInsets.all(15.0),
-      padding: const EdgeInsets.only(right: 15.0),
-      color: Colors.redAccent,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: const [
-          Text(
-            "REMOVER",
-            style: TextStyle(fontSize: 18.0, color: Colors.white),
-          ),
-          Icon(
-            Icons.delete,
-            color: Colors.white,
-            size: 30.0,
-          ),
-        ],
-      ),
     );
   }
 }

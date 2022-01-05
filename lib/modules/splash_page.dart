@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatelessWidget {
@@ -28,7 +27,7 @@ class SplashPage extends StatelessWidget {
 
   Container _buildBody() {
     return Container(
-      decoration: _buildBakcGradient(),
+      decoration: _buildBackcGradient(),
       margin: const EdgeInsets.only(left: 4.0, right: 4.0),
       child: _buildImageAndText(),
     );
@@ -58,17 +57,6 @@ class SplashPage extends StatelessWidget {
               children: <Widget>[
                 Lottie.asset('assets/animations/pokeload.json',
                     width: 120.0, height: 120.0, fit: BoxFit.cover),
-                Padding(
-                  padding: const EdgeInsets.only(top: 24.0),
-                  child: Text(
-                    'FELLIPE AUGUSTO PRATES',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
-                        color: Colors.black87,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700),
-                  ),
-                )
               ],
             ),
           )
@@ -77,7 +65,7 @@ class SplashPage extends StatelessWidget {
     );
   }
 
-  BoxDecoration _buildBakcGradient() {
+  BoxDecoration _buildBackcGradient() {
     return BoxDecoration(
       gradient: LinearGradient(
           begin: const FractionalOffset(0.5, 0.0),
