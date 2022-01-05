@@ -54,6 +54,7 @@ class InfoPokemonController extends GetxController {
       PokemonAmplify.savePokemon(p);
       CustomSnackBar.getSnackBar("POKEMÓN SALVO!",
           "Pokemón da API salvo na AWS.", Icons.done, Colors.blueAccent);
+      PokemonAmplify.selectAllPokemons();
     } else {
       CustomSnackBar.getSnackBar("POKEMÓN JÁ EXISTE!",
           "Pokemón já existe na base da AWS.", Icons.info, Colors.orangeAccent);

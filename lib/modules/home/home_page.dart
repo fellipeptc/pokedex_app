@@ -52,21 +52,22 @@ class HomePage extends GetView<HomeController> {
               List<Pokemon> list = controller.pokemonsAmplify.value;
               if (list.isEmpty) {
                 return Center(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.cancel_sharp,
-                      size: 100.0,
-                      color: AppColors.textColor,
-                    ),
-                    Text(
-                      "SEM DADOS",
-                      style:
-                          TextStyle(fontSize: 26.0, color: AppColors.textColor),
-                    )
-                  ],
-                ));
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.cancel_sharp,
+                        size: 100.0,
+                        color: AppColors.textColor,
+                      ),
+                      Text(
+                        "SEM DADOS",
+                        style: TextStyle(
+                            fontSize: 26.0, color: AppColors.textColor),
+                      )
+                    ],
+                  ),
+                );
               } else {
                 return _buildListViewAmplify();
               }
@@ -102,21 +103,23 @@ class HomePage extends GetView<HomeController> {
   _buildListViewAmplify() {
     return RefreshIndicator(
       onRefresh: () async {
-        20.seconds;
+        await 2.delay();
         return controller.getPokemonListAmplify();
       },
-
-        child: GridView.count(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          controller: controller.scrollController2,
+      child: GridView.builder(
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        shrinkWrap: true,
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-          children: controller.pokemonsAmplify
-              .map((pokemon) => PokemonGrid(pokemon))
-              .toList(),
+          crossAxisSpacing: 20.0,
+          mainAxisSpacing: 20.0,
         ),
+        itemCount: controller.pokemonsAmplify.length,
+        itemBuilder: (context, index){
+          return PokemonGrid(controller.pokemonsAmplify.elementAt(index));
+        },
+      ),
     );
   }
 }

@@ -19,7 +19,6 @@ class AppRoutes {
       page: () => HomePage(),
       binding: HomeBinding(),
       transition: Transition.fadeIn,
-      transitionDuration: const Duration(seconds: 2)
     ),
     GetPage(
       name: '/infoPokemon',

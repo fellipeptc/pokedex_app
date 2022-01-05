@@ -11,23 +11,24 @@ class PokemonGrid extends GetView<HomeController> {
 
   _buildBgDeleteItem() {
     return Container(
-      alignment: Alignment.center,
-      margin: const EdgeInsets.all(15.0),
-      padding: const EdgeInsets.only(right: 15.0),
+      margin: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       color: Colors.redAccent,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text(
-            "REMOVER",
-            style: TextStyle(fontSize: 16.0, color: Colors.white),
-          ),
-          Icon(
-            Icons.delete,
-            color: Colors.white,
-            size: 24.0,
-          ),
-        ],
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              "REMOVER",
+              style: TextStyle(fontSize: 16.0, color: Colors.white),
+            ),
+            Icon(
+              Icons.delete,
+              color: Colors.white,
+              size: 24.0,
+            ),
+          ],
+        ),
       ),
     );
   }
